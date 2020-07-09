@@ -1,6 +1,6 @@
 # DukeJavaProgramming
 
-Para agregar un .jar a Java:
+Para agregar la libreria de la universidad de Duke (.jar) a los proyectos de Java:
 Click derecho al project > Open Module Settings (f4) > Libraries > + > (buscar libreria) > todo OK
 
 # # Semana 2 | (Strings)
