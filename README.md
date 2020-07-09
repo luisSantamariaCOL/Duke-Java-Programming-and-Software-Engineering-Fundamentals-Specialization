@@ -51,3 +51,40 @@ public String findGeneSimple(String dna) {
     
     return result;
 }
+
+# Find Web Link Algorithm (String and substrings) (with lastIndexOf() and indexOf())
+
+public static void main(String[] args) {
+
+        URLResource url = new URLResource("https://www.dukelearntoprogram.com/course2/data/manylinks.html");
+        // System.out.println(urlToString(url));
+        urlToString(url);
+    }
+
+    public static void findWebLink(String line) {
+        String youtube = "youtube.com";
+        String lineLower = line.toLowerCase();
+        if (lineLower.contains(youtube)) {
+            int firstIndex = line.indexOf("\"http");
+            int lastIndex = line.indexOf("\"", firstIndex+1);
+            System.out.println(line.substring(firstIndex, lastIndex + 1));
+        }
+    }
+
+    public static void urlToString(URLResource url) {
+        String string = "";
+        int i = 0;
+        for (String item : url.words()) {
+            // System.out.println((i) + " : " + line);
+            // i++;
+            // findWebLink(line);
+            String itemLower = item.toLowerCase();
+            int pos = itemLower.indexOf("youtube.com");
+            if (pos != -1) {
+                int beg = item.lastIndexOf("\"", pos);
+                int end = item.indexOf("\"", pos +1);
+                System.out.println(item.substring(beg+1, end));
+            }
+        }
+        // return string;
+    }
