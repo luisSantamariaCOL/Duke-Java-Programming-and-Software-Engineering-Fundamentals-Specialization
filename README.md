@@ -1,5 +1,8 @@
 # DukeJavaProgramming
 
+Para agregar un .jar a Java:
+Click derecho al project > Open Module Settings (f4) > Libraries > + > (buscar libreria) > todo OK
+
 # # Semana 2 | (Strings)
 
 GENES
