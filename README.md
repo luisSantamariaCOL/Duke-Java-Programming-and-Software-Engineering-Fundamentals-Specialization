@@ -231,14 +231,9 @@ public static void main(String[] args) {
     
 # CSV FILES (Comma-Separated Values)
 Para usar la clase CSV Parser necesito hacer un import.
-import edu.duke.*;
-import org.apache.commons.csv.*;
+<p> import edu.duke.*; </p>
+<p> import org.apache.commons.csv.*; </p>
 
-<h1> hola </h1>
-<h2> hola </h2>
-<br>
-asdf
-<br>
 
     public class FirstCSVExample
     {
@@ -253,7 +248,6 @@ asdf
             }
         }
     }
-    
- ads
+
 
 
