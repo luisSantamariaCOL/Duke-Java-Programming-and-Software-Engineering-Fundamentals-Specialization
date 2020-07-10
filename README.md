@@ -230,9 +230,30 @@ public static void main(String[] args) {
     }
     
 # CSV FILES (Comma-Separated Values)
+Para usar la clase CSV Parser necesito hacer un import.
+import edu.duke.*;
+import org.apache.commons.csv.*;
 
+<h1> hola </h1>
+<h2> hola </h2>
 <br>
-<img src="https://i.ytimg.com/vi/olXXqoaR0OY/maxresdefault.jpg">
+asdf
 <br>
+
+    public class FirstCSVExample
+    {
+        public void readFood() 
+        {
+            FileResource fr = new FileResource();
+            CSVParser parser = fr.getCSVParser();
+            for(CSVRecord record : parser) 
+            {
+                System.out.println(record.get("Name"));
+                System.out.println(record.get("Favorite Food"));
+            }
+        }
+    }
+    
+ ads
 
 
