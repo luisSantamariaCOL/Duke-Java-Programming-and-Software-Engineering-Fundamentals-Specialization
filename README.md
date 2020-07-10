@@ -89,7 +89,7 @@ public static void main(String[] args) {
         // return string;
     }
     
- }
+   }
  
  
  # String Second Assignments (Multiple Genes) | Strings, Substrings, indexOf, isEmpty
@@ -227,4 +227,4 @@ public static void main(String[] args) {
     public static void testCountGenes() {
         System.out.println(countGenes("ATGTAAGATGCCCTAGT"));
     }
-}
+   }
