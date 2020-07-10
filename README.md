@@ -90,10 +90,16 @@ public static void main(String[] args) {
     }
     
  }
+ 
+ 
     
     # String Second Assignments (Multiple Genes) | Strings, Substrings, indexOf, isEmpty
     
-    public class Part3 {
+    
+    
+    
+    
+ public class Part3 {
     public static void main(String[] args) {
         testCountGenes();
     }
