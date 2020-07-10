@@ -89,6 +89,8 @@ public static void main(String[] args) {
         // return string;
     }
     
+ }
+    
     # String Second Assignments (Multiple Genes) | Strings, Substrings, indexOf, isEmpty
     
     public class Part3 {
