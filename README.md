@@ -88,3 +88,139 @@ public static void main(String[] args) {
         }
         // return string;
     }
+    
+    # String Second Assignments (Multiple Genes) | Strings, Substrings, indexOf, isEmpty
+    
+    public class Part3 {
+    public static void main(String[] args) {
+        testCountGenes();
+    }
+
+    public static int findStopCodon(String dna, int startIndex, String stopCodon) {
+        // find stopCodon starting from (startIndex + 3), currIndex;
+        int currIndex = dna.indexOf(stopCodon, startIndex + 3);
+        while (currIndex != -1) {
+            int diff = currIndex - startIndex;
+            if (diff % 3 == 0) {
+                return currIndex;
+            } else {
+                currIndex = dna.indexOf(stopCodon, currIndex + 1);
+            }
+        }
+        return dna.length();
+    }
+
+    public static void testFindStopCodon() {
+        String s1 = "AACCCTAA";
+        System.out.println(findStopCodon(s1, 0, "TAA"));
+        String s2 = "AACCCTAACTAA";
+        System.out.println(findStopCodon(s2, 0, "TAA"));
+        String s3 = "AACCCTAACCCTACCTAA";
+        System.out.println(findStopCodon(s3, 0, "TAA"));
+        String s4 = "AACCCTAACCCTAACCCTAACCCTAA";
+        System.out.println(findStopCodon(s4, 0, "TAA"));
+    }
+
+    public static String findGene(String dna) {
+        // Find the index of the first occurrence of the start codon “ATG”. If there is no “ATG”, return the empty string.
+        int startIndex = dna.indexOf("ATG");
+        if (startIndex == -1) {
+            return "";
+        }
+
+        // Find the index of the first occurrence of the stop codon “TAA” after the first occurrence of
+        // “ATG” that is a multiple of three away from the “ATG”. Hint: call findStopCodon.
+        int taaIndex = findStopCodon(dna, startIndex, "TAA");
+        int tagIndex = findStopCodon(dna, startIndex, "TAG");
+        int tgaIndex = findStopCodon(dna, startIndex, "TGA");
+        // int minIndex = Math.min(taaIndex, Math.min(tagIndex, tgaIndex));
+        int minIndex = 0;
+
+        // Return the gene formed from the “ATG” and the closest stop codon that is a multiple of three away
+        if (taaIndex == -1 ||
+                (tgaIndex != -1 && tgaIndex < taaIndex)) {
+            minIndex = tgaIndex;
+        } else {
+            minIndex = taaIndex;
+        }
+
+        if (minIndex == -1 ||
+                (taaIndex != -1 && tagIndex < minIndex)) {
+            minIndex = tagIndex;
+        }
+
+        //  If there is no valid stop codon and therefore no gene, return the empty string.
+        if (minIndex == -1) {
+            return "";
+        }
+        return dna.substring(startIndex, minIndex + 3);
+    }
+
+
+    public static String findGene(String dna, int where) {
+        int startIndex = dna.indexOf("ATG", where);
+        if (startIndex == -1) {
+            return "";
+        }
+        int taaIndex = findStopCodon(dna, startIndex, "TAA");
+        int tagIndex = findStopCodon(dna, startIndex, "TAG");
+        int tgaIndex = findStopCodon(dna, startIndex, "TGA");
+        // int minIndex = Math.min(taaIndex, Math.min(tagIndex, tgaIndex));
+        int minIndex = 0;
+        if (taaIndex == -1 ||
+                (tgaIndex != -1 && tgaIndex < taaIndex)) {
+            minIndex = tgaIndex;
+        } else {
+            minIndex = taaIndex;
+        }
+
+        if (minIndex == -1 ||
+                (taaIndex != -1 && tagIndex < minIndex)) {
+            minIndex = tagIndex;
+        }
+
+
+        if (minIndex == -1) {
+            return "";
+        }
+        return dna.substring(startIndex, minIndex + 3);
+    }
+
+    public static void printAllGenes(String dna) {
+        int startIndex = 0;
+
+        while (true) {
+            String currentGene = findGene(dna, startIndex);
+
+            if (currentGene.isEmpty()) {
+                break;
+            }
+            // Print that gene out
+            System.out.println(currentGene);
+            // Set startIndex to just part the end of the gene
+            startIndex = dna.indexOf(currentGene, startIndex) + currentGene.length();
+        }
+    }
+
+
+    public static int countGenes(String dna) {
+        int startIndex = 0;
+        int geneCounter = 0;
+        while (true) {
+            String currentGene = findGene(dna, startIndex);
+
+            if (currentGene.isEmpty()) {
+                break;
+            }
+            // Print that gene out
+            geneCounter++;
+            // Set startIndex to just part the end of the gene
+            startIndex = dna.indexOf(currentGene, startIndex) + currentGene.length();
+        }
+        return geneCounter;
+    }
+
+    public static void testCountGenes() {
+        System.out.println(countGenes("ATGTAAGATGCCCTAGT"));
+    }
+}
