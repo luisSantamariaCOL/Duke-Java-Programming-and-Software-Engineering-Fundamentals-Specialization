@@ -287,7 +287,9 @@ Para usar la clase CSV Parser necesito hacer un import.
     <li> Means "nothing" or "no object" </li>
     <li> Primitive types cannot be null</li>
     <li> Object Types can be null 
-        <li>h</li>
+        <ul>
+            <li> FileResource, String, CSVRecord, Pixel...</li>
+        </ul>
     </li>
 </ul>
 
