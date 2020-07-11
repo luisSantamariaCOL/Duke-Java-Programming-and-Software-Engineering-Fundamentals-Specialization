@@ -280,6 +280,16 @@ Para usar la clase CSV Parser necesito hacer un import.
             listExporters(parser, "coffee");
         }
     }
+    
+# Analyze Numerical Values in CSV Files (With Nulls and Parse)
+<h2>NULL</h2>
+<ul>
+    <li> Means "nothing" or "no object" </li>
+    <li> Primitive types cannot be null</li>
+    <li> Object Types can be null 
+        <li>h</li>
+    </li>
+</ul>
 
 
 
