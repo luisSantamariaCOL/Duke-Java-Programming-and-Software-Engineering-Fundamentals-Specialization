@@ -248,6 +248,38 @@ Para usar la clase CSV Parser necesito hacer un import.
             }
         }
     }
+    
+ <h6> Code: WichCountriesExport </h6>
+ 
+    import edu.duke.*;
+    import org.apache.commons.csv.*;
+    public class WichCountriesExport
+    {
+        public void listExporters(CSVParser parser, String exportOfInterest)
+        {
+            // for each row in the CSV File
+            for (CSVRecord record : parser) 
+            {
+                // Look at the "Exports" column
+                String export = record.get("Exports"); // .get("The name of the column you want");
+                // Check if it contains exportOfInterest
+                if (export.contains(exportOfInterest))
+                {
+                    // If so, write down the "Country" from that row
+                    String country = record.get("Country");
+                    System.out.printl(country);
+                }
+            }
+        }
+        
+        //We are going to test
+        public void whoExportsCoffe()
+        {
+            FileResource fr = new FileResource();
+            CSVParser parser = fr.getCSVParser();
+            listExporters(parser, "coffee");
+        }
+    }
 
 
 
