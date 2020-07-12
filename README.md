@@ -289,9 +289,73 @@ Para usar la clase CSV Parser necesito hacer un import.
     <li> Object Types can be null 
         <ul>
             <li> FileResource, String, CSVRecord, Pixel...</li>
+            <li> Anything with methods</li>
+            <li> Any class you write</li>
         </ul>
     </li>
 </ul>
 
+<br>
+<h3> Weather CSV Code </h3>
+<br>
 
+    public class CSVMax {
+        public CSVRecord hottestHourInFile(CSVParser parser) {
+            // Start with largestSoFar as nothing
+            CSVRecord largestSoFar = null;
+            // For each row (currentRow) in the CSV File
+            for (CSVRecord currentRow : parser) {
+               largestSoFar = getLargestOfTwo(currentRow, largestSoFar);
+            }
+            
+            return largestSoFar;
+        }
+    }
+
+<br>
+<h3> Maximum Temperature from Multiple Datasets Code </h3>
+
+    public CSVRecord hottestInManyDays() {
+        CSVRecord largestSoFar = null;
+        DirectoryResourde dr = new DirectoryResource();
+        // Iterate over files
+        for(File f : dr.selectedFiles()) {
+            FileResource fr = new FileResource(f);
+            // use the method to get largest in file.
+            CSVRecord currentRow = hottestHourInFile(fr.getCSVParse());
+            largestSoFar = getLargestOfTwo(currentRow, largestSoFar);
+        }
+        
+        return largestSoFar;
+    }
+    
+    public CSVRecord getLargestOfTwo (CSVRecord currentRow, CSVRecord largestSoFar) {
+        if (largestSoFar == null) {
+                largestSoFar = current;
+        } else {
+                double currentTemp = Double.parseDouble(currentRow.get("TemperaturF"));
+                double largestTemp = Double.parseDouble(largestSoFar.get("TemperaturF"));
+                if (currentTemp > largestTemp) {
+                        largestSoFar = currentRow;
+                }
+        }
+        return largestSoFar
+        
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 
