@@ -30,3 +30,33 @@
 ### Tips
 
 * Do not call **.remove()** during iteration
+
+### GladLib
+
+-> One public method makeStory  
+make story will read from file or URL  
+
+## HashMap
+
+* Is most efficient that using two parallet ArrayLists
+* A HashMap is a class that associates keys with values, generally called a map  
+   * Key is element in domain, value is what key maps to in range
+* Look up key, get associated value
+
+      map.get("rainbow") -> 41
+      map.get("truth") -> 17
+      
+![HashMap](https://i.imgur.com/OQrXfur.png)
+
+### Accessing All Values in Map
+
+* Printing all values in parallel arrays uses for loop with index accessing word and freq
+
+![HashMapPrint](https://i.imgur.com/5ps4OLE.png)
+
+### Other example
+
+![HashMapExample](https://i.imgur.com/4s4virI.png)
+
+![FindingNounsAndVerbs](https://i.imgur.com/ywUeZbh.png)
+![FindingNounsHashMapImplementation](https://i.imgur.com/GyKKYDg.png)
