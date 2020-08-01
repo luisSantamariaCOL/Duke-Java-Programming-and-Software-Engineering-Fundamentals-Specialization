@@ -9,8 +9,11 @@ public class EarthQuakeClient {
     public ArrayList<QuakeEntry> filterByMagnitude(ArrayList<QuakeEntry> quakeData,
     double magMin) {
         ArrayList<QuakeEntry> answer = new ArrayList<QuakeEntry>();
-        // TODO
-
+        for(QuakeEntry quakeEntry : quakeData) {
+            if (quakeEntry.getMagnitude() > magMin) {
+                answer.add(quakeEntry);
+            }
+        }
         return answer;
     }
 
@@ -19,6 +22,11 @@ public class EarthQuakeClient {
     Location from) {
         ArrayList<QuakeEntry> answer = new ArrayList<QuakeEntry>();
         // TODO
+        for (QuakeEntry qe : quakeData) {
+            if (qe.getLocation().distanceTo(from) < distMax ) {
+                answer.add(qe);
+            }
+        }
 
         return answer;
     }
@@ -42,19 +50,31 @@ public class EarthQuakeClient {
         ArrayList<QuakeEntry> list  = parser.read(source);
         System.out.println("read data for "+list.size()+" quakes");
 
+
+        ArrayList<QuakeEntry> listBig = filterByMagnitude(list, 5.0);
+        for (QuakeEntry qe : listBig) {
+            System.out.println(qe);
+        }
     }
 
     public void closeToMe(){
         EarthQuakeParser parser = new EarthQuakeParser();
-        String source = "http://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_week.atom";
+        // Other source = "http://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_week.atom"
+        String source = "data/nov20quakedatasmall.atom";
         ArrayList<QuakeEntry> list  = parser.read(source);
         System.out.println("read data for "+list.size()+" quakes");
 
         // This location is Durham, NC
-        Location city = new Location(35.988, -78.907);
+        // Location city = new Location(38.17, -118.82);
 
         // This location is Bridgeport, CA
-        // Location city =  new Location(38.17, -118.82);
+        Location city =  new Location(38.17, -118.82);
+        ArrayList<QuakeEntry> close = filterByDistanceFrom(list, 1000*1000, city);
+        for(int k = 0; k < close.size(); k++) {
+            QuakeEntry entry = close.get(k);
+            double distanceInMeters = city.distanceTo(entry.getLocation());
+            System.out.println(distanceInMeters/1000 + " " + entry.getInfo());
+        }
 
         // TODO
     }
