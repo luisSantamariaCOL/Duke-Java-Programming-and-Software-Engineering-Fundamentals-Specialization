@@ -2,7 +2,7 @@ public class Testing {
 
     public static void main(String[] args) {
         Testing testing = new Testing();
-        testing.testClosestQuakesGetClosest();
+        testing.testLargestQuakesFindLargestQuakes();
     }
 
     public void testEarthQuakeClientCreateCSV() {
@@ -33,5 +33,10 @@ public class Testing {
     public void testClosestQuakesGetClosest() {
         ClosestQuakes cq = new ClosestQuakes();
         cq.findClosestQuakes();
+    }
+
+    public void testLargestQuakesFindLargestQuakes() {
+        LargestQuakes lq = new LargestQuakes();
+        lq.findLargestQuakes();
     }
 }
