@@ -2,7 +2,7 @@ public class Testing {
 
     public static void main(String[] args) {
         Testing testing = new Testing();
-        testing.testEarthQuakeClientQuakesOfDepth();
+        testing.testClosestQuakesGetClosest();
     }
 
     public void testEarthQuakeClientCreateCSV() {
@@ -23,5 +23,15 @@ public class Testing {
     public void testEarthQuakeClientQuakesOfDepth() {
         EarthQuakeClient earthQuakeClient = new EarthQuakeClient();
         earthQuakeClient.quakesOfDepth();
+    }
+
+    public void testEarthQuakeClientQuakesByPhrase() {
+        EarthQuakeClient earthQuakeClient = new EarthQuakeClient();
+        earthQuakeClient.quakesByPhrase();
+    }
+
+    public void testClosestQuakesGetClosest() {
+        ClosestQuakes cq = new ClosestQuakes();
+        cq.findClosestQuakes();
     }
 }
