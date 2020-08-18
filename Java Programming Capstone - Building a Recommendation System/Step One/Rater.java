@@ -57,4 +57,19 @@ public class Rater {
         
         return list;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        boolean sameId = false;
+
+        if (o instanceof Rater) {
+            sameId = this.myID.equals(((Rater) o).myID);
+        }
+        return sameId;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(myID, myRatings);
+    }
 }
