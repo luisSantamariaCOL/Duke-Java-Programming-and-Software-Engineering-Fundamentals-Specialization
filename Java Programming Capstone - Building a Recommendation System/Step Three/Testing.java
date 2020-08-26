@@ -7,7 +7,8 @@ public class Testing {
 
     public static void main(String[] args) {
 //        testFirstRatings();
-        testMovieRunnerAverage();
+//        testMovieRunnerAverage();
+        testThirdRatings();
 //        testSecondRatings();
     }
 
@@ -20,6 +21,11 @@ public class Testing {
     public static void testSecondRatings() {
         SecondRatings sr = new SecondRatings();
         sr.getAverageRatings(2);
+    }
+
+    public static void testThirdRatings() {
+        ThirdRatings tr = new ThirdRatings();
+        System.out.println(tr.getAverageRatings(4));
     }
 
     public static void testMovieRunnerAverage() {
