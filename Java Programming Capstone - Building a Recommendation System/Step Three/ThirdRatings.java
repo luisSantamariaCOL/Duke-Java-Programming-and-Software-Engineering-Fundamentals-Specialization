@@ -2,22 +2,16 @@ import java.util.ArrayList;
 
 public class ThirdRatings {
 
-    private ArrayList<Movie> myMovies;
-    private java.util.ArrayList<EfficientRater> myRaters;
+    private ArrayList<EfficientRater> myRaters;
 
     public ThirdRatings() {
-        // default constructor
-        this("ratedmovies_short", "ratings_short");
+        this("ratings_short");
     }
 
-    public ThirdRatings(String movieFile, String ratingsFile) {
+    public ThirdRatings(String ratingsFile) {
         FirstRatings fr = new FirstRatings();
-        this.myMovies = fr.loadMovies(movieFile);
         this.myRaters = fr.loadRaters(ratingsFile);
-    }
-
-    public int getMovieSize() {
-        return myMovies.size();
+        MovieDatabase.initialize("ratedmovies_short");
     }
 
     public int getRaterSize() {
@@ -43,8 +37,8 @@ public class ThirdRatings {
 
     public ArrayList<Rating> getAverageRatings(int minimalRaters) {
         ArrayList<Rating> ratingsWithMinimalRaters = new ArrayList<>();
-        for (Movie movie : myMovies) {
-            String movieID = movie.getID();
+        ArrayList<String> movies = MovieDatabase.filterBy(new TrueFilter());
+        for (String movieID : movies) {
             double averageRating = getAverageByID(movieID, minimalRaters);
             if (averageRating == 0.0) continue;
             Rating rating = new Rating(movieID, averageRating);
@@ -54,35 +48,6 @@ public class ThirdRatings {
         return ratingsWithMinimalRaters;
     }
 
-    public String getTitle(String movieID) {
-        String titleOfTheMovie = "";
-        boolean movieExists = false;
-        for (Movie movie : myMovies) {
-            if (movie.getID().equals(movieID)) {
-                titleOfTheMovie = movie.getTitle();
-                movieExists = true;
-            }
-        }
 
-        if (movieExists) return titleOfTheMovie;
-
-        return "ID was not found";
-    }
-
-    public String getID(String title) {
-        String movieID = "";
-        boolean movieIDExist = false;
-
-        for (Movie movie : myMovies) {
-            if (movie.getTitle().equals(title)) {
-                movieID = movie.getID();
-                movieIDExist = true;
-            }
-        }
-
-        if (movieIDExist) return movieID;
-
-        return "NO SUCH TITLE";
-    }
 
 }
