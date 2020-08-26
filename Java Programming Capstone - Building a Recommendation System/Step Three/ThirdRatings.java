@@ -11,7 +11,6 @@ public class ThirdRatings {
     public ThirdRatings(String ratingsFile) {
         FirstRatings fr = new FirstRatings();
         this.myRaters = fr.loadRaters(ratingsFile);
-        MovieDatabase.initialize("ratedmovies_short");
     }
 
     public int getRaterSize() {
