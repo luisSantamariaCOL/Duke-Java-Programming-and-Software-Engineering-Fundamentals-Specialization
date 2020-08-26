@@ -3,6 +3,7 @@ import org.apache.commons.csv.*;
 import edu.duke.FileResource;
 
 public class MovieDatabase {
+    //                     MovieID
     private static HashMap<String, Movie> ourMovies;
 
     public static void initialize(String moviefile) {

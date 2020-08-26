@@ -9,7 +9,7 @@ import java.util.*;
 
 public class SecondRatings {
     private ArrayList<Movie> myMovies;
-    private ArrayList<PlainRater> myRaters;
+    private ArrayList<EfficientRater> myRaters;
 
     public SecondRatings() {
         // default constructor
@@ -34,7 +34,7 @@ public class SecondRatings {
         double average = 0.0;
         double sum = 0.0;
         double count = 0.0;
-        for (PlainRater rater : myRaters) {
+        for (EfficientRater rater : myRaters) {
             if (rater.hasRating(movieID)) {
                 sum += rater.getRating(movieID);
                 count++;

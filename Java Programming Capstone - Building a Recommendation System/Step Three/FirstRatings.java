@@ -6,12 +6,12 @@ import org.apache.commons.csv.*;
 
 public class FirstRatings {
 
-    public ArrayList<PlainRater> loadRaters(String filename) {
+    public ArrayList<EfficientRater> loadRaters(String filename) {
         FileResource fileOfRatings = new FileResource("data/" + filename + ".csv");
         CSVParser parser = fileOfRatings.getCSVParser();
-        ArrayList<PlainRater> raters = new ArrayList<>();
+        ArrayList<EfficientRater> raters = new ArrayList<>();
         for (CSVRecord record : parser) {
-            PlainRater rater = recordToRater(record);
+            EfficientRater rater = recordToRater(record);
             if (!raters.contains(rater)) {
                 raters.add(rater);
             } else {
@@ -22,21 +22,21 @@ public class FirstRatings {
         return raters;
     }
 
-    private PlainRater recordToRater(CSVRecord record) {
+    private EfficientRater recordToRater(CSVRecord record) {
         String id = record.get("rater_id");
-        PlainRater rater = new PlainRater(id);
+        EfficientRater rater = new EfficientRater(id);
         rater.addRating(record.get("movie_id"), Double.parseDouble(record.get("rating")));
         return rater;
     }
 
     public void testLoadRaters() {
-        ArrayList<PlainRater> localVariable = loadRaters("ratings");
+        ArrayList<EfficientRater> localVariable = loadRaters("ratings");
         System.out.println("---------------------------------");
         System.out.println("total number of raters " + localVariable.size());
         int particularNumberOfRatings = 2;
         int countRaters = 0;
         int maxNumOfRatings = 0;
-        for (PlainRater rater : localVariable) {
+        for (EfficientRater rater : localVariable) {
             if (rater.numRatings() == particularNumberOfRatings) {
                 countRaters++;
             }
@@ -54,10 +54,10 @@ public class FirstRatings {
         howManyDifferentMoviesHaveBeenRated(localVariable);
     }
 
-    private void howManyDifferentMoviesHaveBeenRated(ArrayList<PlainRater> raters) {
+    private void howManyDifferentMoviesHaveBeenRated(ArrayList<EfficientRater> raters) {
         System.out.println("-------------------------------------------------");
         ArrayList<String> differentMovies = new ArrayList<>();
-        for (PlainRater rater : raters) {
+        for (EfficientRater rater : raters) {
             ArrayList<String> temp = rater.getItemsRated();
             for (String item : temp) {
                 if (!differentMovies.contains(item)) {
@@ -68,11 +68,11 @@ public class FirstRatings {
         System.out.println("There were " + differentMovies.size() + " different movies rated");
     }
 
-    private void printMaximumNumberOfRatings(int maxNumOfRatings, ArrayList<PlainRater> raters) {
+    private void printMaximumNumberOfRatings(int maxNumOfRatings, ArrayList<EfficientRater> raters) {
         int count = 0;
         System.out.println("-------------------------------------------------");
         System.out.println("Raters that have max number of ratings: ");
-        for (PlainRater rater : raters) {
+        for (EfficientRater rater : raters) {
             if (rater.numRatings() == maxNumOfRatings) {
                 System.out.println("ID " + rater.getID() + ", Number of ratings " + rater.numRatings());
                 System.out.println("\t" + rater.getItemsRated());
@@ -83,9 +83,9 @@ public class FirstRatings {
         System.out.println("-------------------------------------------------");
     }
 
-    private void printNumOfRatingsOfParticularMovie(String movie_id, ArrayList<PlainRater> raters) {
+    private void printNumOfRatingsOfParticularMovie(String movie_id, ArrayList<EfficientRater> raters) {
         int countNumOfRatings = 0;
-        for (PlainRater rater : raters) {
+        for (EfficientRater rater : raters) {
             if (rater.getItemsRated().contains(movie_id)) {
                 countNumOfRatings++;
             }
