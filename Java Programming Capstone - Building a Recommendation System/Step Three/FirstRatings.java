@@ -30,7 +30,7 @@ public class FirstRatings {
     }
 
     public void testLoadRaters() {
-        ArrayList<EfficientRater> localVariable = loadRaters("ratings");
+        ArrayList<EfficientRater> localVariable = loadRaters("ratings_short");
         System.out.println("---------------------------------");
         System.out.println("total number of raters " + localVariable.size());
         int particularNumberOfRatings = 2;

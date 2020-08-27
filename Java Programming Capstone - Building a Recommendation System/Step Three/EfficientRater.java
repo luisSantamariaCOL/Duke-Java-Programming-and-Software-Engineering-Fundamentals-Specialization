@@ -5,12 +5,12 @@ import java.util.Objects;
 public class EfficientRater implements Rater{
 
     private String myID;
-    private ArrayList<Rating> myRatings;
+//    private ArrayList<Rating> myRatings;
     private HashMap<String, Rating> myRatingsMap;
 
     public EfficientRater(String id) {
         myID = id;
-        myRatings = new ArrayList<Rating>();
+//        myRatings = new ArrayList<Rating>();
         myRatingsMap = new HashMap<>();
     }
 
@@ -54,8 +54,8 @@ public class EfficientRater implements Rater{
     public boolean equals(Object o) {
         boolean sameId = false;
 
-        if (o instanceof PlainRater) {
-            sameId = this.myID.equals(((PlainRater) o).getID());
+        if (o instanceof EfficientRater) {
+            sameId = this.myID.equals(((EfficientRater) o).getID());
             // sameId = this.myID.equals(((PlainRater) o).myID);
         }
         return sameId;
@@ -63,6 +63,6 @@ public class EfficientRater implements Rater{
 
     @Override
     public int hashCode() {
-        return Objects.hash(myID, myRatings);
+        return Objects.hash(myID, myRatingsMap);
     }
 }

@@ -7,9 +7,10 @@ public class Testing {
 
     public static void main(String[] args) {
 //        testFirstRatings();
-//        testMovieRunnerAverage();
-        testThirdRatings();
 //        testSecondRatings();
+//        testThirdRatings();
+//        testMovieRunnerAverage();
+        testMovieRunnerWithFilters();
     }
 
     public static void testFirstRatings() {
@@ -32,6 +33,11 @@ public class Testing {
         MovieRunnerAverage mr = new MovieRunnerAverage();
 //        mr.printAverageRatings();
         mr.getAverageRatingOneMovie();
+    }
+
+    public static void testMovieRunnerWithFilters() {
+        MovieRunnerWithFilters mr = new MovieRunnerWithFilters();
+        mr.printAverageRatings();
     }
 
 }
