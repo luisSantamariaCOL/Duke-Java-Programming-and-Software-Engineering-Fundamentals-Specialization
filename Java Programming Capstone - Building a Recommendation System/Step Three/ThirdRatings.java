@@ -47,6 +47,18 @@ public class ThirdRatings {
         return ratingsWithMinimalRaters;
     }
 
+    public ArrayList<Rating> getAverageRatingsByFilter(int minimalRaters, Filter filterCriteria) {
+        ArrayList<Rating> ratingsWithMinimalRaters = new ArrayList<>();
+        ArrayList<String> movies = MovieDatabase.filterBy(filterCriteria);
+        for (String movieID : movies) {
+            double averageRating = getAverageByID(movieID, minimalRaters);
+            if (averageRating == 0.0) continue;
+            Rating rating = new Rating(movieID, averageRating);
+            ratingsWithMinimalRaters.add(rating);
+        }
+        return ratingsWithMinimalRaters;
+    }
+
 
 
 }

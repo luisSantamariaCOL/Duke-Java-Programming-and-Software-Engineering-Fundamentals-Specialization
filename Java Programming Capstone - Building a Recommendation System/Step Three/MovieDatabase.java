@@ -1,6 +1,18 @@
 import java.util.*;
+
 import org.apache.commons.csv.*;
 import edu.duke.FileResource;
+
+/*
+* MovieDatabase.java
+* purpose: The class is an efficient way to get information about movies.
+* It stores movie information in a HashMap for fast lookup of movie information given a movie ID.
+* The class also allows filtering movies based on queries.
+*
+* @author Luis Santamaria
+* @version 1.0 1/09/2020
+ */
+
 
 public class MovieDatabase {
     //                     MovieID
@@ -8,19 +20,19 @@ public class MovieDatabase {
 
     public static void initialize(String moviefile) {
         if (ourMovies == null) {
-            ourMovies = new HashMap<String,Movie>();
+            ourMovies = new HashMap<String, Movie>();
             loadMovies(moviefile);
         }
     }
 
     private static void initialize() {
         if (ourMovies == null) {
-            ourMovies = new HashMap<String,Movie>();
+            ourMovies = new HashMap<String, Movie>();
             loadMovies("data/ratedmoviesfull.csv");
         }
-    }	
+    }
 
-	
+
     private static void loadMovies(String filename) {
         FirstRatings fr = new FirstRatings();
         ArrayList<Movie> list = fr.loadMovies(filename);
@@ -81,12 +93,12 @@ public class MovieDatabase {
     public static ArrayList<String> filterBy(Filter f) {
         initialize();
         ArrayList<String> list = new ArrayList<String>();
-        for(String id : ourMovies.keySet()) {
+        for (String id : ourMovies.keySet()) {
             if (f.satisfies(id)) {
                 list.add(id);
             }
         }
-        
+
         return list;
     }
 

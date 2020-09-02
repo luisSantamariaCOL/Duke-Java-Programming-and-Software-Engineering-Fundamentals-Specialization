@@ -37,7 +37,13 @@ public class Testing {
 
     public static void testMovieRunnerWithFilters() {
         MovieRunnerWithFilters mr = new MovieRunnerWithFilters();
-        mr.printAverageRatings();
+//        mr.printAverageRatings();
+//        mr.printAverageRatingsByYear();
+//        mr.printAverageRatingsByGenre();
+//        mr.printAverageRatingsByMinutes();
+//        mr.printAverageRatingsByDirectors();
+//        mr.printAverageRatingsByYearAfterAndGenre();
+        mr.printAverageRatingsByDirectorsAndMinutes();
     }
 
 }
