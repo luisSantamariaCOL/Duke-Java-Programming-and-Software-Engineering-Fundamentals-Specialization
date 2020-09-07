@@ -11,22 +11,23 @@ import java.util.Collections;
 public class MovieRunnerAverage {
 
     public void printAverageRatings() {
-        SecondRatings sr = new SecondRatings("ratedmovies_short", "ratings_short");
+        SecondRatings sr = new SecondRatings("ratedmoviesfull", "ratings");
         System.out.println(sr.getMovieSize() + " movies");
         System.out.println(sr.getRaterSize() + " raters\n");
 
-        ArrayList<Rating> ratings = sr.getAverageRatings(3);
+        ArrayList<Rating> ratings = sr.getAverageRatings(12);
         Collections.sort(ratings);
         for (Rating rating : ratings) {
             String movieID = rating.getItem();
             String titleOfMovie = sr.getTitle(movieID);
             System.out.println(rating.getValue() + " " + titleOfMovie);
         }
+        System.out.println("How many movies? " + ratings.size());
     }
 
     public void getAverageRatingOneMovie() {
-        SecondRatings sr = new SecondRatings("ratedmovies_short", "ratings_short");
-        String movieToFind = "The Godfather";
+        SecondRatings sr = new SecondRatings("ratedmoviesfull", "ratings");
+        String movieToFind = "Vacation";
         String idFinded = sr.getID(movieToFind);
         ArrayList<Rating> ratings = sr.getAverageRatings(1);
         for (Rating rating : ratings) {
@@ -36,6 +37,4 @@ public class MovieRunnerAverage {
             }
         }
     }
-
-
 }

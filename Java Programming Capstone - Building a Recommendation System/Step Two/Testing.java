@@ -24,8 +24,8 @@ public class Testing {
 
     public static void testMovieRunnerAverage() {
         MovieRunnerAverage mr = new MovieRunnerAverage();
-//        mr.printAverageRatings();
-        mr.getAverageRatingOneMovie();
+        mr.printAverageRatings();
+//        mr.getAverageRatingOneMovie();
     }
 
 }
