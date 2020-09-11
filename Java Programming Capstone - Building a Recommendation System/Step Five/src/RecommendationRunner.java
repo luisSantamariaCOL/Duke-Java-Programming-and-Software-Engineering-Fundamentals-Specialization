@@ -20,13 +20,6 @@ import java.util.ArrayList;
  *                method printRecommendationsFor() to get your recommendations
  *                based on the user's ratings and display them.
  *
- *               Style the CSS take a long time to design and debug on CodePen.
- *                https://codepen.io/wei-paradox-xu/pen/XWJjyKV?editors=1100
- *
- *  * IMPORTANT NOTICE:
- *      * Weighted average algorithm optimized by WEI XU
- *      * Instead of  "sum of (similar rating(i) *rating of the movie(i))/count of the raters"
- *      * !!!!!I use  "sum of (similar rating(i) *rating of the movie(i))/ sum of the similar rating(i)", will achieve better results.
  *
  ****************************************************************/
 
