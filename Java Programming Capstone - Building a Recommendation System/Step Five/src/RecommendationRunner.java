@@ -1,6 +1,7 @@
 import edu.duke.FileResource;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 /***************************************************************
  *  Name:    Luis Santamaria
@@ -62,16 +63,16 @@ public class RecommendationRunner implements Recommender {
     @Override
     public void printRecommendationsFor(String webRaterID) {
         this.webRaterID = webRaterID;
-        style("pruebacss.txt");
         printHtml();
     }
 
 
     private ArrayList<Rating> getRatings() {
         FourthRatings fourthRatings = new FourthRatings();
-        int numSimilarRaters = 20;
+        int numSimilarRaters = 30;
         int minimalRaters = 2;
         String genre = "Animation";
+        int limitOfRatings = 20;
 
         AllFilters filters = new AllFilters();
         filters.addFilter(new GenreFilter(genre));
@@ -84,7 +85,11 @@ public class RecommendationRunner implements Recommender {
             System.out.println("<h1>" + message + "</h1>");
             System.exit(1);
         }
-        System.out.println("<h1>Ratings: " + ratings.size() + "</h1>");
+
+        if (ratings.size() > 20) {
+            ArrayList<Rating> ratingsSubList = new ArrayList<>(ratings.subList(0, 20));
+            return ratingsSubList;
+        }
         return ratings;
     }
 
@@ -101,50 +106,78 @@ public class RecommendationRunner implements Recommender {
     }
 
     private void printHtml() {
+        printHead();
+        printBody();
+    }
+
+    private void printHead() {
+        metaTag();
+        style("bootstrapmin.txt");
+        style("maincss.txt");
+    }
+
+    private void printBody() {
+
+        System.out.println("<div class=\"container-table100\">");
+        System.out.println("<div class=\"wrap-table100\">");
         printTable();
+        System.out.println("</div>");
+        System.out.println("</div>");
+
     }
 
     private void printTable() {
-        System.out.println("<table>");
+        System.out.println("<div class=\"table100 ver3 m-b-110\">");
         printTableHead();
         printTableBody();
-        System.out.println("</table>");
+        System.out.println("</div>");
     }
 
     private void printTableHead() {
-        System.out.println("\t<tr class=\"trTable\">");
-        System.out.println("\t\t<th>#</th>");
-        System.out.println("\t\t<th>Poster</th>");
-        System.out.println("\t\t<th>Movie</th>");
-        System.out.println("\t\t<th>Rating</th>");
-        System.out.println("\t\t<th>Year</th>");
-        System.out.println("\t\t<th>Director</th>");
-        System.out.println("\t\t<th>Minutes</th>");
-        System.out.println("\t\t<th>Country</th>");
-        System.out.println("\t</tr>");
+        String[] tableTitles = {"#", "POSTER", "MOVIE", "RATING", "YEAR", "DIRECTOR", "MINUTES", "COUNTRY"};
+
+        System.out.println("<div class=\"table100-head\">");
+        System.out.println("    <table>");
+        System.out.println("        <thead>");
+        System.out.println("            <tr class=\"row100 head\">");
+        int i = 1;
+        for (String tableTitle : tableTitles) {
+            System.out.println("             <th class=\"column"+i+"\">"+tableTitle+"</th>");
+            i++;
+        }
+        System.out.println("            </tr>");
+        System.out.println("        <thead>");
+        System.out.println("    </table>");
+        System.out.println("</div>");
     }
 
     private void printTableBody() {
         int i = 1;
+        System.out.println("<div class=\"table100-body js-pscroll\">");
+        System.out.println("    <table>");
+        System.out.println("        <tbody>");
         for (Rating rating : getRatings()) {
             setMovieValues(rating);
-            System.out.println("\t<tr>");
+            System.out.println("            <tr class=\"body\">");
             printTableRow(i, moviePoster, movieName, ratingValue, year, director, minutes, country);
-            System.out.println("\t</tr>");
+            System.out.println("            </tr>");
             i++;
         }
+        System.out.println("        </tbody>");
+        System.out.println("    </table>");
+        System.out.println("</div>");
     }
 
     private void printTableRow(int index, String poster, String movie, double rating, int year,
                                String director, int minutes, String country) {
-        System.out.println("\t\t<td>" + index + "</td>");
-        System.out.println("\t\t<td> <img src=" + poster + " /></td>");
-        System.out.println("\t\t<td>" + movie + "</td>");
-        System.out.println("\t\t<td>" + rating + "</td>");
-        System.out.println("\t\t<td>" + year + "</td>");
-        System.out.println("\t\t<td>" + director + "</td>");
-        System.out.println("\t\t<td>" + minutes + "</td>");
-        System.out.println("\t\t<td>" + country + "</td>");
+        System.out.println("                <td class=\"column1\">" + index + "</td>");
+        System.out.println("                <td class=\"column2\"> <img src=" + poster + " /></td>");
+        System.out.println("                <td class=\"column3\">" + movie + "</td>");
+        System.out.println("                <td class=\"column4\">" + rating + "</td>");
+        System.out.println("                <td class=\"column5\">" + year + "</td>");
+        System.out.println("                <td class=\"column6\">" + director + "</td>");
+        System.out.println("                <td class=\"column7\">" + minutes + "</td>");
+        System.out.println("                <td class=\"column8\">" + country + "</td>");
 
     }
 
@@ -155,7 +188,11 @@ public class RecommendationRunner implements Recommender {
             System.out.println(line);
         }
         System.out.println("</style>");
+    }
 
+    private void metaTag() {
+        System.out.println("<meta charset=\"UTF-8\">");
+        System.out.println("<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">");
     }
 
     private String[] splitFile(FileResource fileResource) {
