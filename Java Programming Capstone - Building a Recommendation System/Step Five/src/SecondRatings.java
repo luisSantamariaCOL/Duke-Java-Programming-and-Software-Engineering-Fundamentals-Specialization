@@ -1,4 +1,4 @@
-package src; /**
+/**
  * This class do many of the calculations focusing on computing averages on movie ratings
  *
  * @author Luis Esteban Santamaría Blanco

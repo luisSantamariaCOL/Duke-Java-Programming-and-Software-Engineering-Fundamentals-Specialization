@@ -1,5 +1,3 @@
-package src;
-
 public class DirectorsFilter implements Filter {
     private String directors;
 

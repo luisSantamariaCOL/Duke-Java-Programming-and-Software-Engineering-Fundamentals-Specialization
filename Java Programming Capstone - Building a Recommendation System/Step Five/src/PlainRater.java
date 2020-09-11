@@ -1,4 +1,3 @@
-package src;
 /**
  * Write a description of class Rater here.
  * 

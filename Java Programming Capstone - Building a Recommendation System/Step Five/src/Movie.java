@@ -1,5 +1,3 @@
-package src;
-
 // An immutable passive data object (PDO) to represent item data
 public class Movie {
     private String id;

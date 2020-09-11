@@ -1,5 +1,3 @@
-package src;
-
 public class MinutesFilter implements Filter{
     private int minMinutes;
     private int maxMinutes;

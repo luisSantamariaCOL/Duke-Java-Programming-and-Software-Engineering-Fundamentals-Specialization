@@ -1,9 +1,7 @@
-package src;
-
 import java.util.ArrayList;
 import java.util.Collections;
 
-public class FourthRatings {
+public class    FourthRatings {
 //    private ArrayList<EfficientRater> myRaters;
 
     public FourthRatings() {

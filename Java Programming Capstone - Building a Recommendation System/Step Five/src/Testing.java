@@ -1,7 +1,8 @@
-package src;
 /*
     Class for testing methods of all classes
  */
+
+import java.util.ArrayList;
 
 public class Testing {
 
@@ -11,7 +12,8 @@ public class Testing {
 //        testThirdRatings();
 //        testMovieRunnerAverage();
 //        testMovieRunnerWithFilters();
-        testMovieRunnerSimilarRatings();
+//        testMovieRunnerSimilarRatings();
+        testRecommendationRunner();
     }
 
     public static void testFirstRatings() {
@@ -58,4 +60,10 @@ public class Testing {
           mv.printSimilarRatingsByYearAfterAndMinutes();
     }
 
+    public static void testRecommendationRunner() {
+        RecommendationRunner recommendationRunner = new RecommendationRunner();
+//        ArrayList<String> movies = recommendationRunner.getItemsToRate();
+        recommendationRunner.printRecommendationsFor("201");
+
+    }
 }
