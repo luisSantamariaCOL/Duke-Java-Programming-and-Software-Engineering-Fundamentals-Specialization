@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 import java.util.Collections;
 
-public class    FourthRatings {
+public class FourthRatings {
 //    private ArrayList<EfficientRater> myRaters;
 
     public FourthRatings() {
@@ -65,7 +65,7 @@ public class    FourthRatings {
             if (meRater.hasRating(item) && rRater.hasRating(item)) {
                 double meRatingScaled = meRater.getRating(item) - 5.0;
                 double rRatingScaled = rRater.getRating(item) - 5.0;
-                product += meRatingScaled*rRatingScaled;
+                product += meRatingScaled * rRatingScaled;
             }
         }
 
@@ -96,17 +96,21 @@ public class    FourthRatings {
     }
 
     public ArrayList<Rating> getSimilarRatings(String id, int numSimilarRaters, int minimalRaters,
-                                                       Filter filterCriteria) {
-        ArrayList<Rating> list = getSimilarities(id);
+                                               Filter filterCriteria) {
+        ArrayList<Rating> similarRaters = getSimilarities(id);
         ArrayList<Rating> movieRatings = new ArrayList<>();
         ArrayList<String> movies = MovieDatabase.filterBy(filterCriteria);
-        // Rater me = RaterDatabase.getRater(id);
+
+        if (similarRaters.size() == 0) {
+            System.out.println("There is no raters with similarities");
+        }
 
         for (String movieID : movies) {
             int count = 0;
             double sum = 0.0;
+
             for (int i = 0; i < numSimilarRaters; i++) {
-                Rating raterRating = list.get(i); // get a rating r of every rater in numSimilarRaters
+                Rating raterRating = similarRaters.get(i); // get a rating r of every rater in numSimilarRaters
                 String rID = raterRating.getItem();
                 Rater er = RaterDatabase.getRater(rID);
                 if (er.hasRating(movieID)) {
@@ -115,8 +119,9 @@ public class    FourthRatings {
                     count++;
                 }
             }
+
             if (count >= minimalRaters) {
-                double weightedAvgMovie = sum/count;
+                double weightedAvgMovie = sum / count;
                 Rating rating = new Rating(movieID, weightedAvgMovie);
                 movieRatings.add(rating);
             }

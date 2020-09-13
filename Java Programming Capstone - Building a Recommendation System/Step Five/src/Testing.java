@@ -63,7 +63,8 @@ public class Testing {
     public static void testRecommendationRunner() {
         RecommendationRunner recommendationRunner = new RecommendationRunner();
 //        ArrayList<String> movies = recommendationRunner.getItemsToRate();
-        recommendationRunner.printRecommendationsFor("201");
+        recommendationRunner.printRecommendationsFor("200");
+
 
     }
 }

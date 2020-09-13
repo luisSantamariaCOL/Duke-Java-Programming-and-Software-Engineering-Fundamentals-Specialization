@@ -34,6 +34,8 @@ public class RecommendationRunner implements Recommender {
     private String director;
     private int minutes;
     private String country;
+    private static final String url = "https://www.dukelearntoprogram.com//capstone/recommender.php?id=3uKlPQdMeDZbVt";
+
 
     public RecommendationRunner() {
         initializeVariables();
@@ -62,17 +64,20 @@ public class RecommendationRunner implements Recommender {
 
     @Override
     public void printRecommendationsFor(String webRaterID) {
-        this.webRaterID = webRaterID;
-        printHtml();
+        try {
+            this.webRaterID = webRaterID;
+            printHtml();
+        } catch (Exception e) {
+            errorMessage();
+        }
     }
 
-
+        // This methods will get all the Ratings to display
     private ArrayList<Rating> getRatings() {
         FourthRatings fourthRatings = new FourthRatings();
-        int numSimilarRaters = 30;
+        int numSimilarRaters = 20;
         int minimalRaters = 2;
         String genre = "Animation";
-        int limitOfRatings = 20;
 
         AllFilters filters = new AllFilters();
         filters.addFilter(new GenreFilter(genre));
@@ -81,9 +86,7 @@ public class RecommendationRunner implements Recommender {
                 fourthRatings.getSimilarRatings(webRaterID, numSimilarRaters, minimalRaters,
                         filters);
         if (ratings.size() == 0) {
-            String message = "no movies were rated by the number of minimal raters specified in the recommender";
-            System.out.println("<h1>" + message + "</h1>");
-            System.exit(1);
+            errorMessage();
         }
 
         if (ratings.size() > 20) {
@@ -96,7 +99,7 @@ public class RecommendationRunner implements Recommender {
     private void setMovieValues(Rating rating) {
         Movie movie = MovieDatabase.getMovie(rating.getItem());
 
-        moviePoster = movie.getPoster();
+        moviePoster = MovieDatabase.getPoster(rating.getItem()).substring(7);
         movieName = movie.getTitle();
         ratingValue = (double) Math.round(rating.getValue() * 10) / 10;
         year = movie.getYear();
@@ -152,10 +155,11 @@ public class RecommendationRunner implements Recommender {
     }
 
     private void printTableBody() {
-        int i = 1;
+
         System.out.println("<div class=\"table100-body js-pscroll\">");
         System.out.println("    <table>");
         System.out.println("        <tbody>");
+        int i = 1;
         for (Rating rating : getRatings()) {
             setMovieValues(rating);
             System.out.println("            <tr class=\"body\">");
@@ -170,8 +174,10 @@ public class RecommendationRunner implements Recommender {
 
     private void printTableRow(int index, String poster, String movie, double rating, int year,
                                String director, int minutes, String country) {
+        String URL = "http://www.dukelearntoprogram.com/capstone/data/" + poster;
+
         System.out.println("                <td class=\"column1\">" + index + "</td>");
-        System.out.println("                <td class=\"column2\"> <img src=" + poster + " /></td>");
+        System.out.println("                <td class=\"column2\"> <img src=\"" + URL + "\" height=\"100\" align=\"center\"></td>");
         System.out.println("                <td class=\"column3\">" + movie + "</td>");
         System.out.println("                <td class=\"column4\">" + rating + "</td>");
         System.out.println("                <td class=\"column5\">" + year + "</td>");
@@ -198,6 +204,15 @@ public class RecommendationRunner implements Recommender {
     private String[] splitFile(FileResource fileResource) {
         String[] myText = fileResource.asString().trim().split("\n");
         return myText;
+    }
+
+    private void errorMessage() {
+        String message = "no movies were rated by the number of minimal raters specified in the recommender";
+        System.out.println("<h6 style=\"color:white;\">" + message + "</h6>\"");
+        System.out.println("<h6 style=\"color:white;\">please try again in</h6>");
+        System.out.println("<a href=\""+ url +"\">Capstone Recommender Input Form</a>\n");
+        System.out.println();
+        System.exit(0);
     }
 
 }
